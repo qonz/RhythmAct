@@ -2,14 +2,12 @@ package rhythmact;
 
 import densan.s.game.manager.GameManager;
 import game.Game;
-import game.SceneManager;
 /**
  * このゲームの実行用クラス
  * @author Taishin
  *
  */
 public class RhythmAct extends Game {
-	
 	/**
 	 * 画面の広さ(横幅)
 	 */
@@ -19,7 +17,7 @@ public class RhythmAct extends Game {
 	 */
 	public static final int FRAME_HEIGHT = 720;
 
-	public RhythmAct(SceneManager sceneManager) {
+	public RhythmAct() {
 		super(RhythmActSceneManager.getInstance());
 		// TODO 自動生成されたコンストラクター・スタブ
 	}
@@ -27,8 +25,8 @@ public class RhythmAct extends Game {
 	public static void main(String[] args) {
 		// TODO 自動生成されたメソッド・スタブ
 		GameManager gm = GameManager.getInstance();
-		gm.createFrame(FRAME_WIDTH, FRAME_HEIGHT);
-		
+		gm.createFrame(FRAME_WIDTH, FRAME_HEIGHT, "RhythmAct!!");
+//		gm.setUpdatable(new RhythmAct());
 	}
 
 }
