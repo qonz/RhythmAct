@@ -4,7 +4,9 @@ import java.awt.Image;
 
 import densan.s.game.drawing.Drawer;
 import densan.s.game.image.ImageLoader;
+import densan.s.game.manager.GameManager;
 import densan.s.game.object.GameRectBase;
+import rhythmact.RhythmActSetting;
 /**
  * ノーツ
  * @author Taishin
@@ -12,13 +14,18 @@ import densan.s.game.object.GameRectBase;
  */
 public abstract class Note extends GameRectBase {
 	/**
-	 * オブジェクトの画像
+	 * ノーツ1つ分のサイズ
+	 */
+	public static final int NOTE_SIZE = 160;
+	/**
+	 * ノーツの画像
 	 */
 	protected Image image;
 	
+	
 	public Note(double x, double y, String imageName) {
-		super(x, y, 0, 0);
-		// TODO     ↑  ↑ ノーツサイズを判定位置との距離で変える
+		super(x*NOTE_SIZE+GameManager.getInstance().getFrameWidth()/16, y*NOTE_SIZE/2*RhythmActSetting.getInstance().getSpeed()+RhythmActSetting.getInstance().getJudgeGap()*10, NOTE_SIZE, NOTE_SIZE);
+		// TODO     ↑ノーツ位置の調整								↑ノーツ間の調整
 		if (imageName != null)
 			this.image = ImageLoader.load(imageName);
 	}
