@@ -52,6 +52,10 @@ public class MusicScoreLoader {
 				if(note != null)
 					notes.put(new Point(px, py), note);
 				px++;
+				if(px>7){
+					System.err.println("ファイルエラー：ボタンは7つまでです");
+					System.exit(1);
+				}
 				//デバッグ用出力
 				System.out.print(c);
 			}
@@ -61,8 +65,8 @@ public class MusicScoreLoader {
 			px = 0;
 			py++;
 		}
-		
-		return null;
+
+		return new MusicScore(notes);
 	}
 
 	/**
@@ -81,6 +85,10 @@ public class MusicScoreLoader {
 		}
 	}
 	
+	/**
+	 * ファイルロードのテスト用mainメソッド
+	 * @param args
+	 */
 	public static void main(String[] args){
 		MusicScoreLoader.load("./test/testscore01");
 	}
