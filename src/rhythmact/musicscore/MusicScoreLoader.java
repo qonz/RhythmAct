@@ -26,12 +26,13 @@ public class MusicScoreLoader {
 	
 	/**
 	 * 楽譜を読み込む
-	 * @param fileName
-	 * @return 読み込んだ楽譜のオブジェクト
+	 * @param musicName - 楽曲名
+	 * @param difficulty - 難易度
+	 * @return
 	 */
-	public static MusicScore load(String fileName){
+	public static MusicScore load(String musicName, String difficulty){
 		//ファイルの読み込み
-		loadFile(fileName);
+		loadFile(musicName,difficulty);
 		//一行を一文字ごとで分割したものを入れるための配列
 		char[] lineList;
 		//ステージの要素の位置
@@ -66,15 +67,16 @@ public class MusicScoreLoader {
 			py++;
 		}
 
-		return new MusicScore(notes);
+		return new MusicScore(notes, musicName);
 	}
-
+	
 	/**
 	 * ファイルをマップに読み込む。
-	 * @param fileName - 楽譜ファイルの名前
+	 * @param musicName - 楽曲名
+	 * @param difficulty - 難易度
 	 */
-	private static void loadFile(String fileName) {
-		try (Stream<String> file = Files.lines(Paths.get(fileName), StandardCharsets.UTF_8)){
+	private static void loadFile(String musicName, String difficulty) {
+		try (Stream<String> file = Files.lines(Paths.get(musicName+"/"+difficulty), StandardCharsets.UTF_8)){
 			musicScoreText.clear();
 			file.forEach(line -> musicScoreText.add(line));
 		} catch (IOException e) { //入出力エラー
@@ -90,6 +92,6 @@ public class MusicScoreLoader {
 	 * @param args
 	 */
 	public static void main(String[] args){
-		MusicScoreLoader.load("./test/testscore01");
+		MusicScoreLoader.load("test","testscore01");
 	}
 }

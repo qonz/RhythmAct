@@ -37,11 +37,12 @@ public class MusicScoreManager {
 	}
 	
 	/**
-	 * 楽譜を読み込む
-	 * @param fileName
+	 * 楽曲を読み込む
+	 * @param musicName
+	 * @param difficulty
 	 */
-	public void load(String fileName) {
-		currentMusicScore = MusicScoreLoader.load(fileName);
+	public void load(String musicName, String difficulty) {
+		currentMusicScore = MusicScoreLoader.load(musicName,difficulty);
 	}
 	
 	/**
