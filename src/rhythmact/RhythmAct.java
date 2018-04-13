@@ -26,7 +26,7 @@ public class RhythmAct extends Game {
 		// TODO 自動生成されたメソッド・スタブ
 		GameManager gm = GameManager.getInstance();
 		gm.createFrame(FRAME_WIDTH, FRAME_HEIGHT, "RhythmAct!!");
-//		gm.setUpdatable(new RhythmAct());
+		gm.setUpdatable(new RhythmAct());
 	}
 
 }
