@@ -1,9 +1,13 @@
-package rhythmact;
+package rhythmact.scene;
 
 import densan.s.game.drawing.Drawer;
 import game.Scene;
 import game.SceneManager;
-
+/**
+ * タイトルシーン
+ * @author Taishin
+ *
+ */
 public class TitleScene extends Scene {
 
 	public TitleScene(SceneManager sceneManager) {
