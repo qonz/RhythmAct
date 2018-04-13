@@ -32,13 +32,14 @@ public class MusicScoreLoader {
 	 */
 	public static MusicScore load(String musicName, String difficulty){
 		//ファイルの読み込み
+		System.out.println("読み込みファイル名:"+musicName+"/"+difficulty+".txt");
 		loadFile(musicName,difficulty);
 		//一行を一文字ごとで分割したものを入れるための配列
 		char[] lineList;
 		//ステージの要素の位置
 		int px = 0, py = 0;
 		//サイズ
-		//int width = 0, height = 0;
+//		int width = 0, height = 0;
 		//ノーツ譜面
 		HashMap<Point, Note> notes = new HashMap<>();
 		
@@ -53,6 +54,7 @@ public class MusicScoreLoader {
 				if(note != null)
 					notes.put(new Point(px, py), note);
 				px++;
+//				width = Math.max(px, width);
 				if(px>7){
 					System.err.println("ファイルエラー：ボタンは7つまでです");
 					System.exit(1);
@@ -65,6 +67,7 @@ public class MusicScoreLoader {
 			//最初に戻って一段下げる
 			px = 0;
 			py++;
+//			height = py;
 		}
 
 		return new MusicScore(notes, musicName);
@@ -92,6 +95,6 @@ public class MusicScoreLoader {
 	 * @param args
 	 */
 	public static void main(String[] args){
-		MusicScoreLoader.load("test","testscore01");
+//		MusicScoreLoader.load("test","testscore01");
 	}
 }
