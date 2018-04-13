@@ -14,7 +14,6 @@ public class RhythmActSceneManager extends SceneManager {
 	private static RhythmActSceneManager instance = new RhythmActSceneManager();
 	
 	private RhythmActSceneManager() {
-		// TODO setScene でタイトル画面に遷移
 		setScene(new TitleScene(this));
 	}
 	
