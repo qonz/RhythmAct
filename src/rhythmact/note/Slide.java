@@ -7,7 +7,7 @@ package rhythmact.note;
 public class Slide extends Note {
 
 	public Slide(double x, double y) {
-		super(x, y, "image/flo.png");
+		super(x, y, "image/slide.png");
 		// TODO 自動生成されたコンストラクター・スタブ
 	}
 
