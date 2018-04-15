@@ -27,7 +27,7 @@ public abstract class Note extends GameRectBase {
 		super(x*NOTE_SIZE+GameManager.getInstance().getFrameWidth()/16, y*NOTE_SIZE/2*RhythmActSetting.getInstance().getSpeed()+RhythmActSetting.getInstance().getJudgeGap()*10, NOTE_SIZE, NOTE_SIZE);
 		// TODO     ↑ノーツ位置の調整								↑ノーツ間の調整
 		if (imageName != null)
-			this.image = ImageLoader.load(imageName);
+			image = ImageLoader.load(imageName);
 	}
 	
 	/**
