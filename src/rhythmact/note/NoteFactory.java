@@ -16,6 +16,7 @@ public class NoteFactory {
 	public static Note createNotes(char c, int x, int y){
 		Note note = null;
 		switch(c){
+		case 'L':note = new LineInitPos(x,y);break;
 		case 't':note = new Tap(x,y);break;
 		case 's':note = new Slide(x,y);break;
 		}
