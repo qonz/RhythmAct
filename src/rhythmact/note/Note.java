@@ -55,5 +55,7 @@ public abstract class Note extends GameRectBase {
 	public void setHeight(int height) {
 		//何もしないようにオーバーライド
 	}
+	
+	public abstract void hitAction();
 
 }
