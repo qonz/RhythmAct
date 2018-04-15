@@ -24,6 +24,7 @@ public class MusicScore {
 	 * 楽曲名
 	 */
 	private String musicName;
+	
 	/**
 	 * 背景画像
 	 */

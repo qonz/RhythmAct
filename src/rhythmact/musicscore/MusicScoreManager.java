@@ -52,4 +52,5 @@ public class MusicScoreManager {
 	public MusicScore getMusicScore(){
 		return currentMusicScore;
 	}
+	
 }
