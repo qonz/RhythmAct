@@ -39,7 +39,7 @@ public class MusicScoreLoader {
 		//ステージの要素の位置
 		int px = 0, py = 0;
 		//サイズ
-//		int width = 0, height = 0;
+		int width = 0, height = 0;
 		//ノーツ譜面
 		HashMap<Point, Note> notes = new HashMap<>();
 		
@@ -67,10 +67,10 @@ public class MusicScoreLoader {
 			//最初に戻って一段下げる
 			px = 0;
 			py++;
-//			height = py;
+			height = py;
 		}
 
-		return new MusicScore(notes, musicName);
+		return new MusicScore(notes, musicName, height);
 	}
 	
 	/**

@@ -24,15 +24,20 @@ public class MusicScore {
 	 * 楽曲名
 	 */
 	private String musicName;
+	/**
+	 * 譜面の縦の長さ
+	 */
+	private int height;
 	
 	/**
 	 * 背景画像
 	 */
 	private Image backGround = ImageLoader.load("");
 
-	public MusicScore(HashMap<Point, Note> notes, String musicName) {
+	public MusicScore(HashMap<Point, Note> notes, String musicName, int height) {
 		this.notes = notes;
 		this.musicName = musicName;
+		this.height = height;
 	}
 
 	/**
@@ -63,6 +68,14 @@ public class MusicScore {
 	 */
 	public String getMusicName(){
 		return musicName;
+	}
+	
+	/**
+	 * 高さを返す
+	 * @return
+	 */
+	public int getHeight(){
+		return height;
 	}
 	
 }
