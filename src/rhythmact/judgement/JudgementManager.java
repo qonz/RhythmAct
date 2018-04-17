@@ -32,7 +32,7 @@ public class JudgementManager {
 	}
 	
 	public void draw(Drawer d, int offsetX, int offsetY){
-		judgeLine.draw(d);
+		judgeLine.draw(d,offsetX,offsetY);
 	}
 	
 }

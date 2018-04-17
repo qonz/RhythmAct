@@ -25,10 +25,9 @@ public class JudgeLine extends ImageObjectBase {
 		move();
 	}
 
-	@Override
-	public void draw(Drawer d) {
-		d.setColor(Color.BLACK);
-		d.drawLine(getX(), getY(), GameManager.getInstance().getFrameWidth(), getY(), 20);
+	public void draw(Drawer d, int offsetX,int offsetY) {
+		d.setColor(Color.BLUE);
+		d.drawLine(getX(), getY()+offsetY, GameManager.getInstance().getFrameWidth(), getY()+offsetY, 1);
 	}
 
 }
