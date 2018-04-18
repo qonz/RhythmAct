@@ -24,7 +24,7 @@ public class JudgeLine extends GameVectorBase {
 //		setVy(-RhythmActSetting.getInstance().getSpeed());
 //		move();
 		
-		musicScore.intersect(this);
+		musicScore.intersect(this, 1);
 	}
 
 	public void draw(Drawer d, int offsetX,int offsetY) {

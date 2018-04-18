@@ -9,6 +9,7 @@ import game.SceneManager;
 import rhythmact.RhythmActSetting;
 import rhythmact.judgement.JudgementManager;
 import rhythmact.musicscore.MusicScoreManager;
+import rhythmact.note.Note;
 /**
  * タイトルシーン
  * @author Taishin
@@ -16,7 +17,6 @@ import rhythmact.musicscore.MusicScoreManager;
  */
 public class TitleScene extends Scene {
 
-	private int i;
 	private JudgementManager jManager = JudgementManager.getInstance();
 	private MusicScoreManager msManager = MusicScoreManager.getInstance();
 	private GameManager gameManager = GameManager.getInstance();
@@ -24,31 +24,31 @@ public class TitleScene extends Scene {
 	public TitleScene(SceneManager sceneManager) {
 		super(sceneManager);
 		// TODO 自動生成されたコンストラクター・スタブ
-		msManager.load("test", "testscore02");
+		msManager.load("test", "testscore05");
+//		RhythmActSetting.getInstance().setSpeed(10);
 	}
 
 	@Override
 	public void update() {
 		// TODO 自動生成されたメソッド・スタブ
-		i = (i>500)?-2000:i+RhythmActSetting.getInstance().getSpeed();
-		jManager.update();
+		jManager.update(msManager.getMusicScore());
 		msManager.update();
 	}
 
 	@Override
 	public void draw(Drawer d) {
 		// TODO 自動生成されたメソッド・スタブ	
-		int width = gameManager.getFrameWidth(), height = gameManager.getFrameHeight();
-		int offsetY = height /3 - (int)jManager.getJudgeLine().getY();
-
+		int height = gameManager.getFrameHeight();
+		int offsetY = height *4/5 - (int)jManager.getJudgeLine().getY();
 		
-		System.out.println("判定線のY:"+offsetY);
-//		msManager.draw(d, 0, i);
+//		System.out.println("offsetY:"+offsetY+", y:"+jManager.getJudgeLine().getY()) ;
 		
 		jManager.draw(d, 0, offsetY);
 		msManager.draw(d, 0, offsetY);
 		
-//		d.setColor(Color.BLACK);
+		d.setColor(Color.BLACK);
+		d.drawLine(45, 720, 440, 0, 1);
+		d.drawLine(1280-45, 720, 1280-440, 0, 1);
 //		d.drawLine(0, 600, GameManager.getInstance().getFrameWidth(), 600, 1);
 //		d.setFontSize(20);
 //		d.drawString(msManager.getMusicScore().getMusicName(), i*5%gameManager.getFrameWidth(), 500);

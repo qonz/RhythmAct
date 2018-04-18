@@ -10,7 +10,7 @@ import rhythmact.judgement.JudgementManager;
 public class LineInitPos extends Note {
 
 	public LineInitPos(double x, double y) {
-		super(x, y, null);
+		super(x, y, "");
 		JudgementManager.getInstance().setJudgeLine(new JudgeLine(getY()));
 	}
 

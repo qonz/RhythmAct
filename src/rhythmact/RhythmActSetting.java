@@ -8,7 +8,7 @@ public class RhythmActSetting {
 	/**
 	 * ノーツの速さ 初期設定では5
 	 */
-	private int speed = 5;
+	private double speed = 10.0;
 	/**
 	 * 判定位置調整変数 初期設定では0.0
 	 */
@@ -25,7 +25,7 @@ public class RhythmActSetting {
 	 * ノーツの速さを返す
 	 * @return
 	 */
-	public int getSpeed() {
+	public double getSpeed() {
 		return speed;
 	}
 
@@ -33,7 +33,7 @@ public class RhythmActSetting {
 	 * ノーツの速さを設定
 	 * @param speed
 	 */
-	public void setSpeed(int speed) {
+	public void setSpeed(double speed) {
 		this.speed = speed;
 	}
 	/**
@@ -41,7 +41,7 @@ public class RhythmActSetting {
 	 * @return
 	 */
 	public double getJudgeGap() {
-		return judgeGap;
+		return judgeGap*10;
 	}
 	/**
 	 * 判定位置調整の値を設定

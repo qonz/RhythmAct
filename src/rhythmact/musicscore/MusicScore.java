@@ -5,9 +5,11 @@ import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+import densan.s.game.calc.Calc;
 import densan.s.game.drawing.Drawer;
 import densan.s.game.image.ImageLoader;
 import densan.s.game.manager.GameManager;
+import rhythmact.RhythmActSetting;
 import rhythmact.judgement.JudgeLine;
 import rhythmact.judgement.JudgementManager;
 import rhythmact.note.Note;
@@ -65,22 +67,23 @@ public class MusicScore {
 		}
 	}
 	
-	public void intersect(JudgeLine judgeline){
-		//接触の真偽値
-//		boolean 
+	public void intersect(JudgeLine judgeline, int x){
 		//判定線のY座標
-		int lineY = (int)Math.floor(Math.ceil(judgeline.getCenterY())/Note.NOTE_SIZE);// Noteのyにかけてる分割る
-//		System.out.println(Math.ceil(judgeline.getCenterY())+":"+lineY);
-		Note[] note = new Note[7];
-		for(int x = 0; x < 7; x++){
-			try{
-				note[x] = notes.get(new Point(x,lineY));
-			} catch(NullPointerException e){
-				note[x] = null;
-			}
+		int lineY = (int)Math.floor(Math.ceil(judgeline.getCenterY()-RhythmActSetting.getInstance().getJudgeGap())/Note.NOTE_SIZE*4/(RhythmActSetting.getInstance().getSpeed()/2));// Noteのyにかけてる分割る
+		System.out.println(Math.ceil(judgeline.getCenterY())+":"+lineY);
+		Note note = null;
+		try{
+			note = notes.get(new Point(x,lineY-10));
+			System.out.println(note.toString());
+			if(Calc.getDistance(note.getPos(),new Point((int)note.getX(),(int)judgeline.getY()))<60)
+				System.out.println(note.toString());
+		} catch(NullPointerException e){
+			note = null;
 		}
-		if(note[0]!=null)System.out.println(note[0].toString());
 		
+//		if(note[0]!=null){
+//			System.out.println(Calc.getDistance(note[0].getPos(),new Point((int)note[0].getX(),(int)judgeline.getY())));	
+//		}
 	}
 	
 	/**
@@ -113,7 +116,7 @@ public class MusicScore {
 		for(int i=0;i<40;i++){
 		JudgementManager.getInstance().update(MusicScoreManager.getInstance().getMusicScore());
 		MusicScoreManager.getInstance().update();
-		MusicScoreManager.getInstance().getMusicScore().intersect(JudgementManager.getInstance().getJudgeLine());
+		MusicScoreManager.getInstance().getMusicScore().intersect(JudgementManager.getInstance().getJudgeLine(),0);
 		}
 		System.exit(1);
 	}
