@@ -7,6 +7,9 @@ import java.util.Map.Entry;
 
 import densan.s.game.drawing.Drawer;
 import densan.s.game.image.ImageLoader;
+import densan.s.game.manager.GameManager;
+import rhythmact.judgement.JudgeLine;
+import rhythmact.judgement.JudgementManager;
 import rhythmact.note.Note;
 
 /**
@@ -44,7 +47,7 @@ public class MusicScore {
 	 * 更新
 	 */
 	public void update(){
-		for(Entry<Point, Note> e: notes.entrySet()){
+		for(Entry<Point, Note> e: getNotes().entrySet()){
 			e.getValue().update();
 		}
 	}
@@ -57,11 +60,37 @@ public class MusicScore {
 	 */
 	public void draw(Drawer d, int offsetX, int offsetY){
 		d.drawImage(backGround, 0, 0);
-		for(Entry<Point, Note> e: notes.entrySet()){
+		for(Entry<Point, Note> e: getNotes().entrySet()){
 			e.getValue().draw(d, offsetX, offsetY);
 		}
 	}
 	
+	public void intersect(JudgeLine judgeline){
+		//接触の真偽値
+//		boolean 
+		//判定線のY座標
+		int lineY = (int)Math.floor(Math.ceil(judgeline.getCenterY())/Note.NOTE_SIZE);// Noteのyにかけてる分割る
+//		System.out.println(Math.ceil(judgeline.getCenterY())+":"+lineY);
+		Note[] note = new Note[7];
+		for(int x = 0; x < 7; x++){
+			try{
+				note[x] = notes.get(new Point(x,lineY));
+			} catch(NullPointerException e){
+				note[x] = null;
+			}
+		}
+		if(note[0]!=null)System.out.println(note[0].toString());
+		
+	}
+	
+	/**
+	 * 譜面のHashMapを返す
+	 * @return
+	 */
+	public HashMap<Point, Note> getNotes() {
+		return notes;
+	}
+
 	/**
 	 * 楽曲名を返す
 	 * @return
@@ -78,4 +107,14 @@ public class MusicScore {
 		return height;
 	}
 	
+	public static void main(String[] args){
+		GameManager.getInstance().createFrame(1280, 720);
+		MusicScoreManager.getInstance().load("test", "testscore02");
+		for(int i=0;i<40;i++){
+		JudgementManager.getInstance().update(MusicScoreManager.getInstance().getMusicScore());
+		MusicScoreManager.getInstance().update();
+		MusicScoreManager.getInstance().getMusicScore().intersect(JudgementManager.getInstance().getJudgeLine());
+		}
+		System.exit(1);
+	}
 }
