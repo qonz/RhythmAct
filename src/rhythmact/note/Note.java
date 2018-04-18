@@ -32,7 +32,8 @@ public abstract class Note extends ImageObjectBase {
 	 */
 	public void update() {
 //		double gap = (getCenterX()-GameManager.getInstance().getFrameWidth()/2)/80;
-		setVy(RhythmActSetting.getInstance().getSpeed());
+//		setVy(RhythmActSetting.getInstance().getSpeed());
+		setVy(0);
 		if(Calc.getDistance(getPos(), new Point((int)getCenterX(),(int)JudgementManager.getInstance().getJudgeLine().getY()))<GameManager.getInstance().getFrameHeight()){
 			addVy(RhythmActSetting.getInstance().getSpeed()/10);
 			setVx(gap*(RhythmActSetting.getInstance().getSpeed()/5));
