@@ -11,10 +11,4 @@ public class Tap extends Note {
 		// TODO 自動生成されたコンストラクター・スタブ
 	}
 
-	@Override
-	public void hitAction() {
-		// TODO 自動生成されたメソッド・スタブ
-		
-	}
-
 }
