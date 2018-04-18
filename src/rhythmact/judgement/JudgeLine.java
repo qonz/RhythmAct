@@ -21,8 +21,8 @@ public class JudgeLine extends GameVectorBase {
 
 	public void update(MusicScore musicScore) {
 		// TODO 自動生成されたメソッド・スタブ
-		setVy(-RhythmActSetting.getInstance().getSpeed());
-		move();
+//		setVy(-RhythmActSetting.getInstance().getSpeed());
+//		move();
 		
 		musicScore.intersect(this);
 	}
