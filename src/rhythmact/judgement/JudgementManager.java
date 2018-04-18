@@ -1,6 +1,7 @@
 package rhythmact.judgement;
 
 import densan.s.game.drawing.Drawer;
+import rhythmact.musicscore.MusicScore;
 /**
  * 判定に関する管理クラス
  * @author Taishin
@@ -18,21 +19,24 @@ public class JudgementManager {
 		return instance;
 	}
 	
-	public JudgeLine getJudgeLine(){
-		return judgeLine;
-	}
-	
-	public void setJudgeLine(JudgeLine j){
-		if(this.judgeLine == null)
-			this.judgeLine = j;
-	}
-
-	public void update(){
-		judgeLine.update();
+	public void update(MusicScore musicScore){
+		judgeLine.update(musicScore);
 	}
 	
 	public void draw(Drawer d, int offsetX, int offsetY){
 		judgeLine.draw(d,offsetX,offsetY);
 	}
 	
+	public JudgeLine getJudgeLine(){
+		return judgeLine;
+	}
+	
+	public void setJudgeLine(JudgeLine j){
+		if(judgeLine == null)
+			judgeLine = j;
+	}
+	
+	public void clear(){
+		judgeLine = null;
+	}
 }
