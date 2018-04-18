@@ -8,7 +8,7 @@ public class RhythmActSetting {
 	/**
 	 * ノーツの速さ 初期設定では5
 	 */
-	private double speed = 10.0;
+	private double speed = 5.0;
 	/**
 	 * 判定位置調整変数 初期設定では0.0
 	 */
