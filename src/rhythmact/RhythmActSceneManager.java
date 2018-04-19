@@ -1,6 +1,7 @@
 package rhythmact;
 
 import game.SceneManager;
+import rhythmact.scene.PreScene;
 import rhythmact.scene.TitleScene;
 /**
  * このゲームのシーンを管理するクラス
@@ -14,7 +15,7 @@ public class RhythmActSceneManager extends SceneManager {
 	private static RhythmActSceneManager instance = new RhythmActSceneManager();
 	
 	private RhythmActSceneManager() {
-		setScene(new TitleScene(this));
+		setScene(new PreScene(this));//TitleScene(this));
 	}
 	
 	/**
