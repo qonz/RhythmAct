@@ -48,7 +48,7 @@ public class JudgeLine extends GameVectorBase {
 
 	public void draw(Drawer d, int offsetX,int offsetY) {
 		d.setColor(Color.BLUE);
-		d.drawLine(getX(), getY()+offsetY, GameManager.getInstance().getFrameWidth(), getY()+offsetY, 1);
+		d.drawLine(getX(), getY()+offsetY-40, GameManager.getInstance().getFrameWidth(), getY()+offsetY-40, 1);
 		if(judgement==Judgement.Nothing.getJudge()){
 			nowOffsetY = offsetY;
 		}

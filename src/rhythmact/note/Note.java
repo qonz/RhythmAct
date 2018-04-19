@@ -55,7 +55,6 @@ public abstract class Note extends ImageObjectBase {
 	 * 判定線との接触処理
 	 */
 	public void hitAction(){
-		
 	}
 
 }
