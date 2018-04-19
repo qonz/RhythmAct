@@ -11,6 +11,7 @@ import densan.s.game.image.ImageLoader;
 import densan.s.game.manager.GameManager;
 import rhythmact.RhythmActSetting;
 import rhythmact.judgement.JudgeLine;
+import rhythmact.judgement.Judgement;
 import rhythmact.judgement.JudgementManager;
 import rhythmact.note.Note;
 
@@ -33,6 +34,10 @@ public class MusicScore {
 	 * 譜面の縦の長さ
 	 */
 	private int height;
+	/**
+	 * 総ノーツ数
+	 */
+	private int totalNotes;
 	
 	/**
 	 * 背景画像
@@ -43,6 +48,7 @@ public class MusicScore {
 		this.notes = notes;
 		this.musicName = musicName;
 		this.height = height;
+		this.totalNotes = notes.size()-1;
 	}
 
 	/**
@@ -67,23 +73,43 @@ public class MusicScore {
 		}
 	}
 	
-	public void intersect(JudgeLine judgeline, int x){
+	public Judgement intersect(JudgeLine judgeline, int x){
 		//判定線のY座標
 		int lineY = (int)Math.floor(Math.ceil(judgeline.getCenterY()-RhythmActSetting.getInstance().getJudgeGap())/Note.NOTE_SIZE*4/(RhythmActSetting.getInstance().getSpeed()/2));// Noteのyにかけてる分割る
-		System.out.println(Math.ceil(judgeline.getCenterY())+":"+lineY);
+		System.out.println(Math.ceil(judgeline.getCenterY())+":"+lineY+":"+x);
 		Note note = null;
 		try{
-			note = notes.get(new Point(x,lineY-10));
-			System.out.println(note.toString());
-			if(Calc.getDistance(note.getPos(),new Point((int)note.getX(),(int)judgeline.getY()))<60)
+			note = notes.get(new Point(x,lineY-3/2));
+			if(Calc.getDistance(note.getPos(),new Point((int)note.getX(),(int)judgeline.getY()))<100)
 				System.out.println(note.toString());
 		} catch(NullPointerException e){
 			note = null;
 		}
+		if(note!=null){
+			double distance = Calc.getDistance(note.getPos(),new Point((int)note.getX(),(int)judgeline.getY()));
+//			if(distance<100)System.out.println(note.toString());
+			notes.remove(new Point(x,lineY-3/2));
+			if(distance<60){
+//				notes.remove(new Point(x,lineY-3/2));
+				return Judgement.Perfect;
+			}
+			else if(distance<80){
+//				notes.remove(new Point(x,lineY-3/2));
+				return Judgement.Good;
+			}
+			else if(distance<100){
+//				notes.remove(new Point(x,lineY-3/2));
+				return Judgement.Bad;
+			}
+			else{ 
+//				notes.remove(new Point(x,lineY-3/2));
+				return Judgement.Miss;
+			}
+				
+//			notes.remove(new Point(x,lineY-3/2));
+		}
+		return Judgement.Nothing;
 		
-//		if(note[0]!=null){
-//			System.out.println(Calc.getDistance(note[0].getPos(),new Point((int)note[0].getX(),(int)judgeline.getY())));	
-//		}
 	}
 	
 	/**

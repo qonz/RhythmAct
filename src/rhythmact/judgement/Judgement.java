@@ -4,7 +4,8 @@ public enum Judgement {
 	Perfect("PERFECT"),
 	Good("GOOD"),
 	Bad("BAD"),
-	Miss("MISS");
+	Miss("MISS"),
+	Nothing("");
 	
 	private String judgement;
 	
