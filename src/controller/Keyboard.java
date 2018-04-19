@@ -19,7 +19,7 @@ public class Keyboard {
 	}
 	public static boolean isPressLINE3(){
 		return KeyInput.isPress(KeyEvent.VK_T, KeyEvent.VK_G, KeyEvent.VK_B,
-				KeyEvent.VK_Y, KeyEvent.VK_H, KeyEvent.VK_N);
+				KeyEvent.VK_Y, KeyEvent.VK_H, KeyEvent.VK_N, KeyEvent.VK_SPACE);
 	}
 	public static boolean isPressLINE4(){
 		return KeyInput.isPress(KeyEvent.VK_U, KeyEvent.VK_J, KeyEvent.VK_M);
