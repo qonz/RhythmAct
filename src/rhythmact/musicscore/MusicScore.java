@@ -136,14 +136,4 @@ public class MusicScore {
 		return height;
 	}
 	
-	public static void main(String[] args){
-		GameManager.getInstance().createFrame(1280, 720);
-		MusicScoreManager.getInstance().load("test", "testscore02");
-		for(int i=0;i<40;i++){
-		JudgementManager.getInstance().update(MusicScoreManager.getInstance().getMusicScore());
-		MusicScoreManager.getInstance().update();
-		MusicScoreManager.getInstance().getMusicScore().intersect(JudgementManager.getInstance().getJudgeLine(),0);
-		}
-		System.exit(1);
-	}
 }
