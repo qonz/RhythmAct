@@ -1,14 +1,12 @@
 package rhythmact.musicscore;
 
 import java.awt.Point;
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.stream.Stream;
-
 import rhythmact.note.Note;
 import rhythmact.note.NoteFactory;
 
@@ -79,22 +77,51 @@ public class MusicScoreLoader {
 	 * @param difficulty - 難易度
 	 */
 	private static void loadFile(String musicName, String difficulty) {
-		try (Stream<String> file = Files.lines(Paths.get(musicName+"/"+difficulty), StandardCharsets.UTF_8)){
+		/*try (Scanner scanner = new Scanner(new File("src/music/"+musicName+"/"+difficulty+".txt"))){//Stream<String> file = Files.lines(Paths.get("src/music/"+musicName+"/"+difficulty+".txt"))){
 			musicScoreText.clear();
-			file.forEach(line -> musicScoreText.add(line));
+			while(scanner.hasNextLine())
+				musicScoreText.add(scanner.nextLine());
+				//.forEach(line -> musicScoreText.add(line));
 		} catch (IOException e) { //入出力エラー
 			System.err.println(e);
 			System.exit(1);
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.exit(1);
+		} catch (FileNotFoundException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}*/
+		
+		int n = 0;
+		try {
+			musicScoreText.clear();
+			int textIndex = 0;
+			InputStream is = MusicScore.class.getResourceAsStream("/music/"+musicName+"/"+difficulty+".txt");
+			BufferedReader in = new BufferedReader(new InputStreamReader(is));
+			String line;
+			
+			//	一行を一文字ごとで分割したものを入れるための配列。
+			//char[] lineList;
+			//	ステージの要素の位置。
+			//int px = 0, py = 0;
+
+
+			//int playerNum = 0;
+			while ((line = in.readLine()) != null) {
+				n++;
+				// テキストをリストに入れる
+				musicScoreText.add(line.toString());
+			}
+			in.close();
+			is.close();
+		} catch (IOException e) {   // 入出力エラーをつかまえる
+			System.err.println(e);  // エラーメッセージ出力
+			System.exit(1);         // 終了コード 1 で終了する
+		} catch (Exception e) {
+			System.out.println("Line: " + n);
+			e.printStackTrace();
 		}
 	}
 	
-	/**
-	 * ファイルロードのテスト用mainメソッド
-	 * @param args
-	 */
-	public static void main(String[] args){
-//		MusicScoreLoader.load("test","testscore01");
-	}
 }

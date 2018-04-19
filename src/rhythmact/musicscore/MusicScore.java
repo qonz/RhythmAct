@@ -9,6 +9,7 @@ import densan.s.game.calc.Calc;
 import densan.s.game.drawing.Drawer;
 import densan.s.game.image.ImageLoader;
 import densan.s.game.manager.GameManager;
+import densan.s.game.sound.SoundManager;
 import rhythmact.RhythmActSetting;
 import rhythmact.judgement.JudgeLine;
 import rhythmact.judgement.Judgement;
@@ -26,6 +27,10 @@ public class MusicScore {
 	 * ノーツ譜
 	 */
 	private HashMap<Point, Note> notes = new HashMap<>();
+	/**
+	 * 曲
+	 */
+	private int music;
 	/**
 	 * 楽曲名
 	 */
@@ -46,6 +51,7 @@ public class MusicScore {
 
 	public MusicScore(HashMap<Point, Note> notes, String musicName, int height) {
 		this.notes = notes;
+		this.music = SoundManager.loadBGM("music/"+musicName+"/"+musicName+".wav");
 		this.musicName = musicName;
 		this.height = height;
 		this.totalNotes = notes.size()-1;
@@ -79,16 +85,16 @@ public class MusicScore {
 		System.out.println(Math.ceil(judgeline.getCenterY())+":"+lineY+":"+x);
 		Note note = null;
 		try{
-			note = notes.get(new Point(x,lineY-3/2));
+			note = notes.get(new Point(x,lineY-1));
 			if(Calc.getDistance(note.getPos(),new Point((int)note.getX(),(int)judgeline.getY()))<100)
 				System.out.println(note.toString());
 		} catch(NullPointerException e){
 			note = null;
 		}
 		if(note!=null){
-			double distance = Calc.getDistance(note.getPos(),new Point((int)note.getX(),(int)judgeline.getY()));
+			double distance = Calc.getDistance(new Point((int)note.getCenterX(),(int)note.getCenterY()),new Point((int)note.getCenterX(),(int)judgeline.getY()));
 //			if(distance<100)System.out.println(note.toString());
-			notes.remove(new Point(x,lineY-3/2));
+			notes.remove(new Point(x,lineY-1));
 			if(distance<60){
 //				notes.remove(new Point(x,lineY-3/2));
 				return Judgement.Perfect;
@@ -105,8 +111,6 @@ public class MusicScore {
 //				notes.remove(new Point(x,lineY-3/2));
 				return Judgement.Miss;
 			}
-				
-//			notes.remove(new Point(x,lineY-3/2));
 		}
 		return Judgement.Nothing;
 		
@@ -119,7 +123,15 @@ public class MusicScore {
 	public HashMap<Point, Note> getNotes() {
 		return notes;
 	}
-
+	
+	/**
+	 * 曲の整数値を返す
+	 * @return
+	 */
+	public int getMusic(){
+		return music;
+	}
+	
 	/**
 	 * 楽曲名を返す
 	 * @return
