@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import densan.s.game.drawing.Drawer;
 import densan.s.game.manager.GameManager;
+import densan.s.game.sound.SoundManager;
 import game.Scene;
 import game.SceneManager;
 import rhythmact.RhythmActSetting;
@@ -21,10 +22,13 @@ public class TitleScene extends Scene {
 	private MusicScoreManager msManager = MusicScoreManager.getInstance();
 	private GameManager gameManager = GameManager.getInstance();
 	
+	int i=0;
+	
 	public TitleScene(SceneManager sceneManager) {
 		super(sceneManager);
 		// TODO 自動生成されたコンストラクター・スタブ
-		msManager.load("test", "testscore05");
+//		msManager.load("kaeru", "easy");
+//		SoundManager.playBGM(msManager.getMusicScore().getMusic());
 //		RhythmActSetting.getInstance().setSpeed(10);
 	}
 
@@ -33,6 +37,9 @@ public class TitleScene extends Scene {
 		// TODO 自動生成されたメソッド・スタブ
 		jManager.update(msManager.getMusicScore());
 		msManager.update();
+		i++;
+		if(i==120)
+			SoundManager.playBGM(msManager.getMusicScore().getMusic());
 	}
 
 	@Override
